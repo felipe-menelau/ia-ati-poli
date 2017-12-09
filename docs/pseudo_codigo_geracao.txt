@@ -1,0 +1,26 @@
+pseudocodigo:
+
+funcao gerarindividuo(lista servidores, lista funcoes):
+	para cada funcao em funcoes:
+
+		// Um novo valor que será adicionado pela ariadnes será "slots" de funcionários por atribuição. Ela indica o número mínimo // de funcionários por atribuição
+		quantidade_slots= quantidade_slots(funcao)
+
+		while quantidade_slots != 0 OR (não ter mais servidores disponíveis)
+
+			servidor_aleatorio = selecionar_aleatorio(servidores)
+			quantidade_necessaria = funcao.forca_de_trabalho / quantidadeSlots
+
+			if servidor_aleatorio.forca_de_trabalho >= quantidade_necessaria
+
+				// a quantidade de horas por slots é obtida com essa dividindo o núemro de horas total pela quantidade de slots
+				// daí a gente deduz das horas disponiveis do servidor
+				servidorAleatori.forca_de_trabalho -= funcao.forca_de_trabalho / quantidadeSlots 
+
+				// adiciona o servidor que a gente sorteou
+				funcao.addServidor(Servidor)
+
+				//remove a quantidade de slots
+				quantidade_slots -= 1
+
+	// para gerar a população incial basta rodar tudo isso por 50 vezes (tamanho da população) e guardar num dicionário (lista funcoes, fitness);
