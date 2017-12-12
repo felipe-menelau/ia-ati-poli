@@ -10,7 +10,7 @@ class Funcao:
         self.certificacao = kwargs.get('certificacao', '')
         self.pratica_gerencial = kwargs.get('pratica_gerencial', False)
         self.quantidade_slots = kwargs.get('quantidade_slots', 1)
-        self.servidores_alocado = []
+        self.servidores_alocados = []
 
     def __setattr__(self, name, value):
         if name == 'pratica_gerencial' and not isinstance(value, bool):
