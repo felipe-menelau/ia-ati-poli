@@ -33,3 +33,9 @@ class Servidor:
         aux2 = int(aux2)
         results = results + aux1/60 + (aux2/3600)
         return results
+
+    def experiencia_em_gestao(self):
+        if "GEST PRO" in self.areas_de_conhecimento:
+            return True
+        else:
+            return False
