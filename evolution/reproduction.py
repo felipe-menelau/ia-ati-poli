@@ -4,36 +4,36 @@ from models.funcao import Funcao
 from models.servidores import Servidor
 
 def regularReproduction(function1, function2):
-    functionsSize = len(function1)
+    functions_size = len(function1)
     iterator = 0
-    newFunctions =[]
+    new_functions =[]
 
-    while iterator <= ((functionsSize- 1)/2):
-        newFunctions.append(deepCopy(function1[iterator]))
+    while iterator <= ((functions_size- 1)/2):
+        new_functions.append(deepCopy(function1[iterator]))
         iterator+=1
 
-    while iterator <= functionsSize-1:
-        newFunctions.append(deepCopy(function2[iterator]))
+    while iterator <= functions_size-1:
+        new_functions.append(deepCopy(function2[iterator]))
         iterator+=1
 
-    return newFunctions
+    return new_functions
 
 def randomReproduction(funcao1, funcao2):
-    functionsSize = len(function1)
-    drawNumber = 0
+    functions_size = len(function1)
+    draw_number = 0
     visited =[]
-    newFunctions = []
+    new_functions = []
 
-    while len(newFunctions) < (functionsSize/2):
-        drawNumber = randint(0, functionsSize-1)
+    while len(new_functions) < (functions_size/2):
+        draw_number = randint(0, functions_size-1)
 
-        if drawNumber is not in visited:
-            visited.append[drawNumber]
-            newFunctions.append(deepCopy(function1[drawNumber]))
+        if draw_number is not in visited:
+            visited.append[draw_number]
+            new_functions.append(deepCopy(function1[draw_number]))
 
-    while len(newFunctions) < functionsSize:
-        drawNumber = randint(0, functionsSize-1)
+    while len(new_functions) < functions_size:
+        draw_number = randint(0, functions_size-1)
 
-        if drawNumber is not in visited:
-            visited.append[drawNumber]
-            newFunctions.append(deepCopy(function2[drawNumber]))
+        if draw_number is not in visited:
+            visited.append[draw_number]
+            new_functions.append(deepCopy(function2[draw_number]))
