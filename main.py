@@ -4,14 +4,14 @@ from evolution.fitness import fitness
 from evolution.initial_population import gerar_individuo
 from evolution.mutation import mutation
 from evolution.reproduction import regularReproduction
-from parser.parser_funcao import read_file_funcao
-from parser.parser_servidor import read_file
+from parser.parser_funcao import read_file as read_funcao
+from parser.parser_servidor import read_file as read_servidor
 
 def main():
         # read_file_funcao
-        funcoes = read_file_funcao("file_function")
+        funcoes = read_funcao("file_function")
         valor_aceitavel = 0.8
-        servidores = read_file("file")
+        servidores = read_servidor("file")
         fitness_populacao = 0
         fitness = 0
         populacao = gerar_individuo(servidores, funcoes)
