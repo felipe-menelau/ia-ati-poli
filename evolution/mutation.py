@@ -18,11 +18,10 @@ def mutation(some_allocation):
 
         random_server_1 = randint(0, len(first_servers)-1)
         random_server_2 = randint(0, len(second_servers)-1)
-
-        if ((first_servers[random_server_1].cargo is in second_function.funcao) or
-		    (first_function[random_server_1].funcao is in second_function.funcao) and
-		    (second_function[random_server_2].cargo is in first_function.funcaoo) or
-		    (second_function[random_server_2.funcao] is in first_function.funcao)):
+        if ((first_servers[random_server_1].cargo in second_function.funcao) or
+		    (first_function[random_server_1].funcao in second_function.funcao) and
+		    (second_function[random_server_2].cargo in first_function.funcaoo) or
+		    (second_function[random_server_2.funcao] in first_function.funcao)):
 
             temporary_holder = first_servers[random_server_1]
 

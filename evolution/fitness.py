@@ -12,7 +12,7 @@ def fitness(funcao):
 
     for servidor in servidores_alocados:
         parametro_gerencial = calcular_parametro_gerencial(servidor, funcao)
-        parametro_de_carga_horaria = calcular_parametro_de_carga horaria(servidor, funcao)
+        parametro_de_carga_horaria = calcular_parametro_de_carga_horaria(servidor, funcao)
         parametro_de_conhecimento = calcular_parametro_de_conhecimento(servidor, funcao)
 
         denominador_fitness = (parametro_gerencial*PESO_GERENCIAL +
@@ -20,10 +20,9 @@ def fitness(funcao):
                                 parametro_de_conhecimento*PESO_CONHECIMENTO)
 
         numerador_fitness = PESO_GERENCIAL + PESO_CARGA_HORARIA + PESO_CONHECIMENTO
-        fitness = denominador_fitness/numerador_fitness
-        results = results.append({'servidor': servidor.matricula, 'funcao': funcao.chave,
-                                    'fitness': fitness}, ignore_index=True)
-    return results
+        fitness = denominador_fitness/float(numerador_fitness)
+
+    return fitness
 
 def calcular_parametro_gerencial(servidor, funcao):
     if servidor.experiencia_em_gestao() == funcao.pratica_gerencial:
@@ -41,3 +40,9 @@ def calcular_parametro_de_conhecimento(servidor, funcao):
         if conhecimento in funcao.areas_de_conhecimento:
             match_servidor += 1
     return float(match_servidor)/float(len(funcao.areas_de_conhecimento.keys()))
+
+def fitness_individuo(individuo):
+    todos_fitness = []
+    for funcao in individuo:
+        todos_fitness.append(fitness(funcao))
+    return sum(todos_fitness)/float(len(todos_fitness))
