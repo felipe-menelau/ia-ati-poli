@@ -25,7 +25,7 @@ def main():
     random_function_2 = randint(0, random_function_1)
     populacao_reproduzida = regularReproduction(individuos[random_function_1], individuos[random_function_2])
 
-    while fitness_populacao < valor_aceitavel || fitness < valor_aceitavel:
+    while fitness_populacao < valor_aceitavel or fitness < valor_aceitavel:
 
         for individuo in populacao:
             obj = fitness(individuo)
@@ -35,4 +35,4 @@ def main():
             obj = fitness(individuo_reproduzido)
             fitness_populacao += obj['fitness']
 
-        
+
