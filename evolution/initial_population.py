@@ -16,3 +16,4 @@ def gerar_individuo(servidores, funcoes):
 
                 funcao.qunatidade_slots = funcao.quantidade_slots - 1
 
+    return funcoes

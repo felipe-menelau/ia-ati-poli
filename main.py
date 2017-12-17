@@ -10,6 +10,7 @@ from parser.parser_servidor import read_file as read_servidor
 
 
 def main():
+    df_reposta = pd.DataFrame()
     funcoes_filename = argv[1]
     servidores_filename = arvg[2]
 
