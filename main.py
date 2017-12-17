@@ -17,7 +17,7 @@ RANDOM_WHEN = 0.7
 
 def main():
     funcoes_filename = argv[1]
-    servidores_filename = arvg[2]
+    servidores_filename = argv[2]
 
     fitness = {}
 
@@ -27,7 +27,7 @@ def main():
     populacao = []
 
     for i in range(0, 49):
-        individuo = gerar_individuox(servidores, funcoes)
+        individuo = gerar_individuo(servidores, funcoes)
         populacao.append(individuo)
 
     for index, individuo in enumerate(populacao):
