@@ -2,7 +2,7 @@ import pandas as pd
 import base64
 from models.funcao import Funcao
 
-def read_file(file_path):
+def read_file_funcao(file_path):
     file_in = open(file_path, 'r')
     resulting_df = pd.read_csv(file_in)
     funcoes = []
