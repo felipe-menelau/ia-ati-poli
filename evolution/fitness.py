@@ -9,6 +9,7 @@ PESO_CONHECIMENTO = 1
 def fitness(funcao):
     servidores_alocados = funcao.servidores_alocados
     results = pd.DataFrame(columns = ['servidor', 'funcao', 'fitness'])
+    fitness = 0
 
     for servidor in servidores_alocados:
         parametro_gerencial = calcular_parametro_gerencial(servidor, funcao)
@@ -30,9 +31,9 @@ def calcular_parametro_gerencial(servidor, funcao):
     else:
         return 0
 
-#TODO
+
 def calcular_parametro_de_carga_horaria(servidor, funcao):
-    return 1
+    return (funcao.carga_horaria_s - funcao.carga_horaria)/float(funcao.carga_horaria_s)
 
 def calcular_parametro_de_conhecimento(servidor, funcao):
     match_servidor = 0
