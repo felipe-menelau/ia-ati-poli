@@ -35,6 +35,6 @@ def mutation(some_allocation):
                 some_allocation[random_function_1] = first_function
                 some_allocation[random_function_2] = second_function
 
-        number_of_mutations +=1
+        number_of_mutations -=1
 
     return some_allocation

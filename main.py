@@ -13,7 +13,7 @@ from parser.parser_servidor import read_file as read_servidor
 from copy import deepcopy
 ##
 TARGET = 0.7
-RANDOM_WHEN = 0.7
+RANDOM_WHEN = 0.5
 ##
 
 def main():
@@ -40,8 +40,8 @@ def main():
     tuplas_fitness_ordenadas = ordenar_fitness(fitness)
 
     while fitness[tuplas_fitness_ordenadas[0][0]] < TARGET:
-        selecionado1 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas))][0]
-        selecionado2 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas))][0]
+        selecionado1 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas)-1)][0]
+        selecionado2 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas)-1)][0]
         pior_fitness = tuplas_fitness_ordenadas[-1][0]
         maior_fitness = tuplas_fitness_ordenadas[0][0]
 
@@ -52,14 +52,14 @@ def main():
                 filho = (filho, fitness_individuo(filho))
                 if filho[1] > fitness[pior_fitness]:
                     populacao[pior_fitness] = filho[0]
-                    tuplas_fitness_ordenadas[pior_fitness][1], fitness[pior_fitness] = filho[1], filho[1]
+                    fitness[pior_fitness] = filho[1]
             else:
                 filho = regularReproduction(populacao[selecionado2], populacao[selecionado2])
                 filho = mutation(filho)
                 filho = (filho, fitness_individuo(filho))
                 if filho[1] > fitness[pior_fitness]:
                     populacao[pior_fitness] = filho[0]
-                    tuplas_fitness_ordenadas[pior_fitness][1], fitness[pior_fitness] = filho[1], filho[1]
+                    fitness[pior_fitness] = filho[1]
 
             tuplas_fitness_ordenadas = ordenar_fitness(fitness)
         else:
