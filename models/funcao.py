@@ -45,7 +45,10 @@ class Funcao:
         return results
 
     def horas_slotadas(self):
-        return self.carga_horaria / self.quantidade_slots
+        if self.quantidade_slots == 0:
+            return self.carga_horaria
+        else:
+            return self.carga_horaria / self.quantidade_slots
 
     def esvaziar_alocamento(self):
         self.servidores_alocados = []
