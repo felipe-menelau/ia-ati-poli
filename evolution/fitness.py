@@ -36,10 +36,13 @@ def calcular_parametro_de_carga_horaria(servidor, funcao):
 
 def calcular_parametro_de_conhecimento(servidor, funcao):
     match_servidor = 0
-    for conhecimento, peso in servidor.areas_de_conhecimento:
+    for conhecimento, peso in servidor.areas_de_conhecimento.items():
         if conhecimento in funcao.areas_de_conhecimento:
             match_servidor += 1
-    return float(match_servidor)/float(len(funcao.areas_de_conhecimento.keys()))
+    if len(funcao.areas_de_conhecimento.keys()) != 0:
+        return float(match_servidor)/float(len(funcao.areas_de_conhecimento.keys()))
+    else:
+        return 0
 
 def fitness_individuo(individuo):
     todos_fitness = []

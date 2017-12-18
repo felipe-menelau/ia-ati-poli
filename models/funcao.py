@@ -9,7 +9,7 @@ class Funcao:
         self.areas_de_conhecimento = {}
         self.certificacao = kwargs.get('certificacao', '')
         self.pratica_gerencial = kwargs.get('pratica_gerencial', False)
-        self.quantidade_slots = kwargs.get('quantidade_slots', 1)
+        self.quantidade_slots = kwargs.get('quantidade_slots', 5)
         self.servidores_alocados = []
 
     def __setattr__(self, name, value):

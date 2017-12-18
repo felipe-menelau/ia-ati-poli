@@ -27,6 +27,7 @@ def main():
     populacao = []
 
     for i in range(0, 49):
+        print("gerando individuo" + str(i))
         individuo = gerar_individuo(servidores, funcoes)
         populacao.append(individuo)
 
@@ -34,6 +35,7 @@ def main():
         fitness[index] = fitness_individuo(individuo)
 
     tuplas_fitness_ordenadas = ordenar_fitness(fitness)
+    import pdb; pdb.set_trace()
 
     while fitness[tuplas_fitness_ordenadas[0][0]] < TARGET:
         selecionado1 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas))][0]
@@ -70,7 +72,7 @@ def escrever_resposta(individuo):
         df_resposta.loc[-1] = [funcao.funcao, funcao.servidores_alocados[0].matricula, fitness(funcao)]
     df_resposta.to_csv('resposta.csv', sep=',')
 
-def ordernar_fitness(fitness):
+def ordenar_fitness(fitness):
     return sorted(fitness.items(), key=operator.itemgetter(1)).reverse()
 
 if __name__ == '__main__':
