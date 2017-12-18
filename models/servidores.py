@@ -8,6 +8,7 @@ class Servidor:
         self.funcao = kwargs['funcao']
         self.formacoes = []
         self.areas_de_conhecimento = {}
+        self.forca_de_trabalho_s = self.forca_de_trabalho
 
     def forca_to_horas(self, forca):
         forca_str = str(forca)

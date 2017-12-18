@@ -11,6 +11,7 @@ class Funcao:
         self.pratica_gerencial = kwargs.get('pratica_gerencial', False)
         self.quantidade_slots = kwargs.get('quantidade_slots', 5)
         self.servidores_alocados = []
+        self.carga_horaria_s = self.carga_horaria
 
     def __setattr__(self, name, value):
         if name == 'pratica_gerencial' and not isinstance(value, bool):
