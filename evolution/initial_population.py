@@ -5,7 +5,7 @@ def gerar_individuo(servidores, funcoes):
 
     for index, funcao in enumerate(funcoes):
         print (str(index) + " de " + str(len(funcoes)))
-        #import pdb; pdb.set_trace()
+
         while funcao.quantidade_slots != 0:
             servidor_selecionado = servidores[randint(0, contagem_servidores-1)]
 

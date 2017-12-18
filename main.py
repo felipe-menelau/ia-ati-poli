@@ -10,8 +10,9 @@ from evolution.reproduction import regularReproduction
 from evolution.reproduction import randomReproduction
 from parser.parser_funcao import read_file as read_funcao
 from parser.parser_servidor import read_file as read_servidor
+from copy import deepcopy
 ##
-TARGET = 0.5
+TARGET = 0.7
 RANDOM_WHEN = 0.7
 ##
 
@@ -28,52 +29,53 @@ def main():
 
     for i in range(0, 49):
         print("gerando individuo" + str(i))
-        individuo = gerar_individuo(servidores, funcoes)
+        temp_servidores = deepcopy(servidores)
+        temp_funcoes = deepcopy(funcoes)
+        individuo = gerar_individuo(temp_servidores, temp_funcoes)
         populacao.append(individuo)
 
     for index, individuo in enumerate(populacao):
         fitness[index] = fitness_individuo(individuo)
 
     tuplas_fitness_ordenadas = ordenar_fitness(fitness)
-    import pdb; pdb.set_trace()
 
     while fitness[tuplas_fitness_ordenadas[0][0]] < TARGET:
         selecionado1 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas))][0]
         selecionado2 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas))][0]
         pior_fitness = tuplas_fitness_ordenadas[-1][0]
+        maior_fitness = tuplas_fitness_ordenadas[0][0]
 
         if selecionado1 != selecionado2:
             if fitness[maior_fitness] > RANDOM_WHEN:
-                filhos = randomReproduction(populacao[selecionado2], populacao[selecionado2])
-                filhos = map(lambda filho: mutation(filho), filhos)
-                filhos = map(lambda filho: (filho, fitness_individuo(filho)), filhos)
-                for filho in filhos:
-                    if filho[1] > fitness[pior_fitness]:
-                        populacao[pior_fitness] = filho[0]
-                        tuplas_fitness_ordenadas[pior_fitness][1], fitness[pior_fitness] = filho[1], filho[1]
+                filho = randomReproduction(populacao[selecionado2], populacao[selecionado2])
+                filho = mutation(filho)
+                filho = (filho, fitness_individuo(filho))
+                if filho[1] > fitness[pior_fitness]:
+                    populacao[pior_fitness] = filho[0]
+                    tuplas_fitness_ordenadas[pior_fitness][1], fitness[pior_fitness] = filho[1], filho[1]
             else:
-                filhos = regularReproduction(populacao[selecionado2], populacao[selecionado2])
-                filhos = map(lambda filho: mutation(filho), filhos)
-                filhos = map(lambda filho: (filho, fitness_individuo(filho)), filhos)
-                for filho in filhos:
-                    if filho[1] > fitness[pior_fitness]:
-                        populacao[pior_fitness] = filho[0]
-                        tuplas_fitness_ordenadas[pior_fitness][1], fitness[pior_fitness] = filho[1], filho[1]
+                filho = regularReproduction(populacao[selecionado2], populacao[selecionado2])
+                filho = mutation(filho)
+                filho = (filho, fitness_individuo(filho))
+                if filho[1] > fitness[pior_fitness]:
+                    populacao[pior_fitness] = filho[0]
+                    tuplas_fitness_ordenadas[pior_fitness][1], fitness[pior_fitness] = filho[1], filho[1]
 
             tuplas_fitness_ordenadas = ordenar_fitness(fitness)
         else:
             pass
+        print(str(tuplas_fitness_ordenadas[0][1]) + ' ' + str(tuplas_fitness_ordenadas[-1][1]))
 
     escrever_resposta(populacao[tuplas_fitness_ordenadas[0][0]])
 
 def escrever_resposta(individuo):
     df_resposta = pd.DataFrame(columns=['Funcao', 'Servidor', 'Fitness'])
     for funcao in individuo:
-        df_resposta.loc[-1] = [funcao.funcao, funcao.servidores_alocados[0].matricula, fitness(funcao)]
+        df_resposta.loc[-1] = [funcao.chave, funcao.servidores_alocados[0].matricula, fitness(funcao)]
     df_resposta.to_csv('resposta.csv', sep=',')
 
 def ordenar_fitness(fitness):
-    return sorted(fitness.items(), key=operator.itemgetter(1)).reverse()
+    return sorted(fitness.items(), key=operator.itemgetter(1), reverse=True)
 
 if __name__ == '__main__':
     main()
