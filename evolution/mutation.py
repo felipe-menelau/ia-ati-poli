@@ -19,10 +19,15 @@ def mutation(some_allocation):
         random_server_1 = randint(0, len(first_servers)-1)
         random_server_2 = randint(0, len(second_servers)-1)
         if str(second_function.funcao) != 'nan':
-            if ((first_servers[random_server_1].cargo in second_function.funcao) or
+            if (((first_servers[random_server_1]. cargo in second_function.funcao) or
                 (first_function[random_server_1].funcao in second_function.funcao) and
                 (second_function[random_server_2].cargo in first_function.funcaoo) or
-                (second_function[random_server_2.funcao] in first_function.funcao)):
+                (second_function[random_server_2.funcao] in first_function.funcao)) and
+                 first_servers[random_server_1].experiencia_em_gestao() or
+                 first_servers[random_server_1].experiencia_em_gestao() == second_function.pratica_gerencial and
+                 second_function.horas_slotadas() == first_function.horas_slotadas() or
+                 second_function.horas_slotadas <= first_function.horas_slotadas + first_function.forca_de_trabalho_s or
+                 first_function.horas_slotadas <= second_function.horas_slotadas + second_function.forca_de_trabalho_s):
 
                 temporary_holder = first_servers[random_server_1]
 
