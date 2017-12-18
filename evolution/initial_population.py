@@ -5,7 +5,7 @@ def gerar_individuo(servidores, funcoes):
 
     for funcao in funcoes:
         while funcao.quantidade_slots != 0:
-            servidor_selecionado = servidores[randint(0, contagem_servidores)]
+            servidor_selecionado = servidores[randint(0, contagem_servidores-1)]
 
             quantidade_necessaria = funcao.carga_horaria / funcao.quantidade_slots
 

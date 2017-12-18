@@ -11,7 +11,7 @@ from evolution.reproduction import randomReproduction
 from parser.parser_funcao import read_file as read_funcao
 from parser.parser_servidor import read_file as read_servidor
 ##
-TARGET = 0.8
+TARGET = 0.5
 RANDOM_WHEN = 0.7
 ##
 
