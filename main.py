@@ -14,6 +14,7 @@ from copy import deepcopy
 ##
 TARGET = 0.7
 RANDOM_WHEN = 0.5
+NUMBER_OF_ITERACTIONS = 5000
 ##
 
 def main():
@@ -39,7 +40,8 @@ def main():
 
     tuplas_fitness_ordenadas = ordenar_fitness(fitness)
 
-    while fitness[tuplas_fitness_ordenadas[0][0]] < TARGET:
+    iter_number = 0
+    while fitness[tuplas_fitness_ordenadas[0][0]] < TARGET and iter_number <= NUMBER_OF_ITERACTIONS:
         selecionado1 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas)-1)][0]
         selecionado2 = tuplas_fitness_ordenadas[randint(0, len(tuplas_fitness_ordenadas)-1)][0]
         pior_fitness = tuplas_fitness_ordenadas[-1][0]
@@ -65,13 +67,21 @@ def main():
         else:
             pass
         print(str(tuplas_fitness_ordenadas[0][1]) + ' ' + str(tuplas_fitness_ordenadas[-1][1]))
+        iter_number +=1
+        print (iter_number)
 
     escrever_resposta(populacao[tuplas_fitness_ordenadas[0][0]])
 
 def escrever_resposta(individuo):
     df_resposta = pd.DataFrame(columns=['Funcao', 'Servidor', 'Fitness'])
     for funcao in individuo:
-        df_resposta.loc[-1] = [funcao.chave, funcao.servidores_alocados[0].matricula, fitness(funcao)]
+        if funcao.servidores_alocados != []:
+            for servidor in funcao.servidores_alocados:
+                df_resposta.loc[-1] = [funcao.chave, servidor.matricula, fitness(funcao)]
+                df_resposta.index =  df_resposta.index + 1
+        else:
+            pass
+    import pdb; pdb.set_trace()
     df_resposta.to_csv('resposta.csv', sep=',')
 
 def ordenar_fitness(fitness):
