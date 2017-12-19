@@ -80,7 +80,8 @@ def escrever_resposta(individuo):
                 df_resposta.loc[-1] = [funcao.chave, servidor.matricula, fitness(funcao)]
                 df_resposta.index =  df_resposta.index + 1
         else:
-            pass
+            df_resposta.loc[-1] = [funcao.chave, ' ', fitness(funcao)]
+            df_resposta.index = df_resposta.index + 1
     df_resposta.to_csv('resposta.csv', sep=',')
 
 def ordenar_fitness(fitness):
