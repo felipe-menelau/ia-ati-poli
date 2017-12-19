@@ -81,7 +81,6 @@ def escrever_resposta(individuo):
                 df_resposta.index =  df_resposta.index + 1
         else:
             pass
-    import pdb; pdb.set_trace()
     df_resposta.to_csv('resposta.csv', sep=',')
 
 def ordenar_fitness(fitness):
